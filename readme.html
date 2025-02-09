@@ -1,1 +1,176 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>README - Sistema Wi-Fi Premium</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            background-color: #1e1e1e;
+            color: #f5f5f5;
+        }
+        h1, h2, h3 {
+            color: #ffd700;
+        }
+        a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        code {
+            background-color: #333;
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: #f5f5f5;
+        }
+        pre {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+        .badge.instagram {
+            background-color: #E4405F;
+        }
+        .badge.email {
+            background-color: #0078D4;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📶 Sistema de Pagamento Wi-Fi Premium</h1>
+        <p>Sistema completo para gerenciamento de pagamentos com integração WhatsApp, consulta meteorológica e upload automático de comprovantes.</p>
+
+        <h2>🚀 Recursos Principais</h2>
+        <ul>
+            <li><strong>Seleção de Planos:</strong> Escolha entre 3 planos com diferentes durações</li>
+            <li><strong>Consulta de Clima em Tempo Real:</strong> Integração com API de previsão do tempo</li>
+            <li><strong>Upload Automático de Comprovantes:</strong> Hospedagem direta em servidor público via ImgBB API</li>
+            <li><strong>Integração Direta com WhatsApp:</strong> Geração automática de mensagem pré-formatada</li>
+            <li><strong>Design Moderno e Responsivo:</strong> Interface com tema escuro e elementos neon</li>
+            <li><strong>Validação Inteligente:</strong> Campos obrigatórios apenas para nome e telefone</li>
+        </ul>
+
+        <h2>⚡ Últimas Atualizações</h2>
+        <ul>
+            <li>Upload automático de imagens para o ImgBB</li>
+            <li>Design unificado com bordas amarelas e fundo escuro</li>
+            <li>Sistema de preview de imagens com bordas estilizadas</li>
+            <li>Campos opcionais para dados de pagamento</li>
+            <li>Mensagem automática com detalhes do plano selecionado</li>
+            <li>Melhorias na responsividade para mobile</li>
+        </ul>
+
+        <h2>📦 Pré-requisitos</h2>
+        <ul>
+            <li>Servidor web (local ou remoto)</li>
+            <li>Conta no <a href="https://imgbb.com/" target="_blank">ImgBB</a> para API Key</li>
+            <li>Navegador moderno com suporte a:
+                <ul>
+                    <li>JavaScript ES6+</li>
+                    <li>Fetch API</li>
+                    <li>FileReader API</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h2>🛠 Instalação</h2>
+        <pre><code>git clone https://github.com/seu-usuario/wifi-premium.git
+cd wifi-premium
+# Substitua 'SUA_CHAVE_API_AQUI' no arquivo index.html pela sua chave do ImgBB</code></pre>
+
+        <h2>⚙️ Configuração</h2>
+        <ol>
+            <li>Registre-se no <a href="https://imgbb.com/" target="_blank">ImgBB</a></li>
+            <li>Obtenha sua API Key gratuita</li>
+            <li>No arquivo <code>index.html</code>, linha ~160, substitua:
+                <pre><code>'https://api.imgbb.com/1/upload?key=SUA_CHAVE_API_AQUI'</code></pre>
+            </li>
+            <li>Personalize os QR Codes e links de pagamento conforme necessário</li>
+        </ol>
+
+        <h2>💡 Como Usar</h2>
+        <h3>1. Seleção de Plano</h3>
+        <pre><code>- Clique em qualquer botão de plano
+- QR Code e link de pagamento serão exibidos</code></pre>
+
+        <h3>2. Consulta Meteorológica</h3>
+        <pre><code>- Digite o nome da cidade
+- Clique em "Buscar" para ver temperatura, umidade e vento</code></pre>
+
+        <h3>3. Envio de Comprovante</h3>
+        <pre><code>- Preencha nome e telefone (obrigatórios)
+- Anexe imagem (opcional) - suporta JPG/PNG
+- Clique no botão WhatsApp para envio automático
+- O sistema incluirá automaticamente o link do comprovante</code></pre>
+
+        <h2>🛠 Stack Tecnológica</h2>
+        <h3>Frontend</h3>
+        <ul>
+            <li>HTML5 Semântico</li>
+            <li>CSS3 Custom Properties</li>
+            <li>JavaScript Vanilla ES6+</li>
+        </ul>
+
+        <h3>APIs Externas</h3>
+        <ul>
+            <li><a href="https://api.imgbb.com" target="_blank">ImgBB</a> - Upload de imagens</li>
+            <li><a href="https://wttr.in" target="_blank">wttr.in</a> - Dados meteorológicos</li>
+            <li>WhatsApp Web - Integração de mensagens</li>
+        </ul>
+
+        <h3>Dependências</h3>
+        <ul>
+            <li>Font Awesome 6.4.2 (ícones)</li>
+            <li>Fetch API (comunicação HTTP)</li>
+        </ul>
+
+        <h2>🤝 Contribuição</h2>
+        <ol>
+            <li>Faça um Fork do projeto</li>
+            <li>Crie sua Feature Branch:
+                <pre><code>git checkout -b feature/nova-feature</code></pre>
+            </li>
+            <li>Commit suas mudanças:
+                <pre><code>git commit -m 'feat: Minha nova feature'</code></pre>
+            </li>
+            <li>Push para a Branch:
+                <pre><code>git push origin feature/nova-feature</code></pre>
+            </li>
+            <li>Abra um Pull Request</li>
+        </ol>
+
+        <h2>📄 Licença</h2>
+        <p>Distribuído sob licença MIT. Veja <code>LICENSE</code> para mais informações.</p>
+
+        <h2>✉️ Contato</h2>
+        <p><strong>João Ricardo</strong></p>
+        <p>
+            <a href="https://www.instagram.com/joaoricardo.pe" target="_blank" class="badge instagram">Instagram @joaoricardo.pe</a>
+            <a href="mailto:contato@seudominio.com" class="badge email">Email contato@seudominio.com</a>
+        </p>
+
+        <hr>
+
+        <p><strong>⚠️ Nota Importante:</strong> Substitua todos os placeholders (SUA_CHAVE_API_AQUI, links de pagamento, informações de contato) antes de usar em produção.</p>
+    </div>
+</body>
+</html>
