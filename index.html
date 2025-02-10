@@ -47,6 +47,14 @@
         .btn:hover { 
             background-color: #ffd700; 
         }
+        .btn-pix {
+            background-color: #32bbad;
+            color: white;
+        }
+        .btn-link {
+            background-color: #007bff;
+            color: white;
+        }
         input, textarea { 
             width: 100%; 
             padding: 12px; 
@@ -93,6 +101,27 @@
             margin-top: 10px;
             font-size: 14px;
         }
+        .pix-container {
+            display: none;
+            margin-top: 20px;
+            text-align: left;
+            padding: 15px;
+            background: #333;
+            border-radius: 10px;
+            border: 2px solid yellow;
+        }
+        .pix-container img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 15px auto;
+            border-radius: 10px;
+        }
+        .pix-container p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: yellow;
+        }
         footer { 
             margin-top: 40px; 
             font-size: 14px; 
@@ -122,21 +151,36 @@
         <!-- QR Codes dos Planos com Imagens Hospedadas no ImgBB -->
         <div id="plano1" class="qr-code">
             <img src="https://i.ibb.co/cXwY2xH/qrcode-plano1.png" alt="Plano Básico">
-            <a href="https://pagamento.com/plano1" target="_blank">🔗 Pagar Plano Básico</a>
+            <button class="btn btn-link" onclick="pagarComLink('https://loja.com/plano1')">💳 Pagar com Link</button>
+            <button class="btn btn-pix" onclick="mostrarPix('plano1')">📲 Pagar com PIX</button>
+            <div id="pix-plano1" class="pix-container">
+                <p>Chave PIX: <strong>123.456.789-00</strong></p>
+                <img src="https://i.ibb.co/cXwY2xH/qrcode-plano1.png" alt="QR Code PIX Plano Básico">
+            </div>
         </div>
         <div id="plano2" class="qr-code">
             <img src="https://i.ibb.co/cXwY2xH/qrcode-plano2.png" alt="Plano Intermediário">
-            <a href="https://pagamento.com/plano2" target="_blank">🔗 Pagar Plano Intermediário</a>
+            <button class="btn btn-link" onclick="pagarComLink('https://loja.com/plano2')">💳 Pagar com Link</button>
+            <button class="btn btn-pix" onclick="mostrarPix('plano2')">📲 Pagar com PIX</button>
+            <div id="pix-plano2" class="pix-container">
+                <p>Chave PIX: <strong>123.456.789-00</strong></p>
+                <img src="https://i.ibb.co/cXwY2xH/qrcode-plano2.png" alt="QR Code PIX Plano Intermediário">
+            </div>
         </div>
         <div id="plano3" class="qr-code">
             <img src="https://i.ibb.co/cXwY2xH/qrcode-plano3.png" alt="Plano Premium">
-            <a href="https://pagamento.com/plano3" target="_blank">🔗 Pagar Plano Premium</a>
+            <button class="btn btn-link" onclick="pagarComLink('https://loja.com/plano3')">💳 Pagar com Link</button>
+            <button class="btn btn-pix" onclick="mostrarPix('plano3')">📲 Pagar com PIX</button>
+            <div id="pix-plano3" class="pix-container">
+                <p>Chave PIX: <strong>123.456.789-00</strong></p>
+                <img src="https://i.ibb.co/cXwY2xH/qrcode-plano3.png" alt="QR Code PIX Plano Premium">
+            </div>
         </div>
 
         <!-- Seção Clima -->
         <div class="clima-container">
             <h3>🌦️ Consulte o Clima</h3>
-            <input type="text" id="cidade" placeholder="Digite sua cidade">
+            <input type="text" id="cidade" placeholder="🌍 Digite sua cidade">
             <button class="btn" onclick="buscarClima()">🔎 Buscar</button>
             <div id="info-clima" style="font-size: 18px; margin-top: 10px;"></div>
         </div>
@@ -144,7 +188,8 @@
         <!-- Seção Comprovante -->
         <div class="comprovante-container">
             <h3>💳 Enviar Comprovante</h3>
-            <input type="text" id="nome" placeholder="📝 Nome Completo" required>
+            <input type="text" id="nome" placeholder="👤 Nome Completo" required>
+            <input type="email" id="email" placeholder="📧 E-mail" required>
             <input type="tel" id="telefone" placeholder="📞 WhatsApp" required>
             <input type="text" id="dados-pagamento" placeholder="💰 Dados do Pagamento (Opcional)">
             
@@ -171,6 +216,15 @@
         function mostrarPlano(plano) {
             document.querySelectorAll('.qr-code').forEach(qr => qr.style.display = 'none');
             document.getElementById(plano).style.display = 'block';
+        }
+
+        function pagarComLink(link) {
+            window.open(link, '_blank');
+        }
+
+        function mostrarPix(plano) {
+            const pixSection = document.getElementById(`pix-${plano}`);
+            pixSection.style.display = pixSection.style.display === 'none' ? 'block' : 'none';
         }
 
         async function buscarClima() {
@@ -233,22 +287,24 @@
         // Envio para WhatsApp
         async function enviarWhatsApp() {
             const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
             const telefone = document.getElementById('telefone').value.replace(/\D/g, '');
             const dadosPagamento = document.getElementById('dados-pagamento').value;
             const imageUrl = document.getElementById('preview').dataset.uploadedUrl;
             const planoElement = document.querySelector('.qr-code[style="display: block;"]');
             const plano = planoElement ? planoElement.querySelector('img').alt : 'Plano não selecionado';
 
-            if (!nome || !telefone) {
-                alert('Por favor, preencha pelo menos nome e telefone!');
+            if (!nome || !telefone || !email) {
+                alert('Por favor, preencha pelo menos nome, e-mail e telefone!');
                 return;
             }
 
             let mensagem = `*📶 Solicitação de Liberação Wi-Fi Premium*\n\n`;
-            mensagem += `*Nome:* ${nome}\n`;
-            mensagem += `*Telefone:* ${telefone}\n`;
-            mensagem += `*Plano Escolhido:* ${plano}\n`;
-            if (dadosPagamento) mensagem += `*Detalhes Pagamento:* ${dadosPagamento}\n`;
+            mensagem += `👤 *Nome:* ${nome}\n`;
+            mensagem += `📧 *E-mail:* ${email}\n`;
+            mensagem += `📞 *Telefone:* ${telefone}\n`;
+            mensagem += `📡 *Plano Escolhido:* ${plano}\n`;
+            if (dadosPagamento) mensagem += `💰 *Detalhes Pagamento:* ${dadosPagamento}\n`;
             if (imageUrl) {
                 mensagem += `\n📎 *Comprovante:* ${imageUrl}\n`;
                 mensagem += `🔗 *Link para Download:* ${imageUrl}`;
